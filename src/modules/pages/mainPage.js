@@ -22,7 +22,10 @@ class MainPage {
           .map((i) => +i)
       : Array.from({ length: 16 }, (_, i) => i).sort(() => Math.random() - 0.5);
     this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, Math.sqrt(this.arrayForPuzzle.length));
-
+    this.startArray = this.сhunkArray(
+      Array.from({ length: this.arrayForPuzzle.flat().length }, (_, i) => i),
+      Math.sqrt(this.arrayForPuzzle.length)
+    );
     this.soundControler = new SoundControler();
     this.soundControler.checkBox.checked = true;
     this.count = new Count();
@@ -100,6 +103,10 @@ class MainPage {
         const sumTiles = arrSizeTiles.reduce((a, b) => +a * +b);
         this.arrayForPuzzle = Array.from({ length: sumTiles }, (_, i) => i);
         this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, Math.sqrt(sumTiles));
+        this.startArray = this.сhunkArray(
+          Array.from({ length: this.arrayForPuzzle.flat().length }, (_, i) => i),
+          Math.sqrt(this.arrayForPuzzle.length)
+        );
         this.grid.renderTiles(this.shuffleArray);
         this.dragDrop();
       }
@@ -119,7 +126,7 @@ class MainPage {
     this.buttonStart.addEventListener('click', () => {
       this.shuffleArray = this.сhunkArray(
         this.arrayForPuzzle.sort(() => Math.random() - 0.5),
-        4
+        Math.sqrt(this.arrayForPuzzle.length)
       );
       this.grid.renderTiles(this.shuffleArray);
     });
@@ -204,6 +211,10 @@ class MainPage {
           }
         }
       }
+    }
+    const isEqual = JSON.stringify(this.shuffleArray) === JSON.stringify(this.startArray);
+    if (isEqual) {
+      alert(`Hooray! You solved the puzzle in ${this.count.countTime} and ${this.count.countStep} moves!`);
     }
   }
 

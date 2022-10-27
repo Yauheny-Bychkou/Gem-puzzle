@@ -7,7 +7,6 @@ class Count {
   spansecond = document.createElement('span');
   constructor() {
     this.spansecond.innerHTML = ' c';
-
     this.countStep = localStorage.getItem('steps') ? localStorage.getItem('steps') : 0;
     this.countTime = localStorage.getItem('time') ? localStorage.getItem('time') : 0;
     this.spanTextSteps.innerHTML = 'Steps: ';
