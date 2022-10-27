@@ -99,6 +99,7 @@ class MainPage {
         this.arrayForPuzzle = Array.from({ length: sumTiles }, (_, i) => i);
         this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, Math.sqrt(sumTiles));
         this.grid.renderTiles(this.shuffleArray);
+        this.dragDrop();
       }
     });
   }

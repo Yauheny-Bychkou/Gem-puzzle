@@ -76,3 +76,46 @@
   height: 80px;
   border: 1px solid green;
 }
+@media (max-width: 650px) {
+  .grid-eight {
+    position: relative;
+    border: 1px solid red;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-eight-tile {
+    width: 39.75px;
+    height: 39.75px;
+    border: 1px solid green;
+  }
+}
+@media (max-width: 600px) {
+  .grid-six {
+    position: relative;
+    border: 1px solid red;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-six-tile {
+    width: 49.54px;
+    height: 49.54px;
+    border: 1px solid green;
+  }
+  .grid-seven {
+    position: relative;
+    border: 1px solid red;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .grid-seven-tile {
+    width: 45.3px;
+    height: 45.3px;
+    border: 1px solid green;
+  }
+}
