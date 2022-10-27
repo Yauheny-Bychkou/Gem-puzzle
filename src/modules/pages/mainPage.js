@@ -21,19 +21,16 @@ class MainPage {
     this.soundControler.checkBox.checked = true;
     this.count = new Count();
     this.buttonStart = new Button({ text: 'Shuffle and start', className: 'button' }).element;
-    this.buttonStop = new Button({ text: 'Stop', className: 'button' }).element;
     this.buttonSave = new Button({ text: 'Save', className: 'button' }).element;
     this.buttonResult = new Button({ text: 'Result', className: 'button' }).element;
     this.grid = new Grid(this.shuffleArray);
     this.render();
     this.addEventListenerToButtonStart();
-    this.addEventListenerToButtonStop();
     this.addEventListenerToButtonSave();
     this.addEventListenerToButtonResult();
     this.addEventListenerToGridWrapper();
     this.addEventListenerToWrapperButtons();
     this.dragDrop();
-    // this.addEventListenerToInputCheckbox();
     setInterval(() => {
       this.count.spanTextTimeCount.innerHTML = this.count.countTime++;
     }, 1000);
@@ -44,7 +41,6 @@ class MainPage {
     const dragZone = document.querySelectorAll('.empty-tile');
     dragItems.forEach((item) => {
       item.addEventListener('dragstart', (e) => {
-        // e.target.style.transition = '0s';
         e.target.classList.remove('anim');
         e.dataTransfer.setData('elem', e.target.textContent);
       });
@@ -73,7 +69,7 @@ class MainPage {
   }
   render() {
     const body = document.querySelector('body');
-    this.buttonsWrapperControl.append(this.buttonStart, this.buttonStop, this.buttonSave, this.buttonResult);
+    this.buttonsWrapperControl.append(this.buttonStart, this.buttonSave, this.buttonResult);
     this.buttonsWrapperSize.append(
       new Button({ text: '3x3', className: 'button-size' }).element,
       new Button({ text: '4x4', className: 'button-size' }).element,
@@ -115,13 +111,11 @@ class MainPage {
   }
   addEventListenerToButtonStart() {
     this.buttonStart.addEventListener('click', () => {
-      this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, 4);
+      this.shuffleArray = this.сhunkArray(
+        this.arrayForPuzzle.sort(() => Math.random() - 0.5),
+        4
+      );
       this.grid.renderTiles(this.shuffleArray);
-    });
-  }
-  addEventListenerToButtonStop() {
-    this.buttonStop.addEventListener('click', () => {
-      console.log('stop');
     });
   }
   addEventListenerToButtonSave() {
