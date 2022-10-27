@@ -25,7 +25,7 @@ class Grid {
     arrayForPuzzle.flat().forEach((item) => {
       const div = document.createElement('div');
       div.classList.add(`${this.className}-tile`, 'tile');
-      div.innerHTML = item;
+      item ? (div.innerHTML = item) : (div.innerHTML = '');
       this.element.append(div);
     });
   }
