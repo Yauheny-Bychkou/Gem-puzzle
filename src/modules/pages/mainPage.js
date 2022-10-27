@@ -127,6 +127,8 @@ class MainPage {
   addEventListenerToButtonSave() {
     this.buttonSave.addEventListener('click', () => {
       localStorage.setItem('array', this.shuffleArray.flat());
+      localStorage.setItem('steps', this.count.countStep);
+      localStorage.setItem('time', this.count.countTime);
     });
   }
   addEventListenerToButtonResult() {
