@@ -32,16 +32,41 @@ class MainPage {
     this.addEventListenerToButtonResult();
     this.addEventListenerToGridWrapper();
     this.addEventListenerToWrapperButtons();
+    this.dragDrop();
     // this.addEventListenerToInputCheckbox();
     setInterval(() => {
       this.count.spanTextTimeCount.innerHTML = this.count.countTime++;
     }, 1000);
   }
-  // addEventListenerToInputCheckbox() {
-  //   this.soundControler.checkBox.addEventListener('change', (e) => {
-  //     //
-  //   });
-  // }
+
+  dragDrop() {
+    const dragItems = document.querySelectorAll('.tile');
+    const dragZone = document.querySelectorAll('.empty-tile');
+    dragItems.forEach((item) => {
+      item.addEventListener('dragstart', (e) => {
+        e.target.style.transition = '0s';
+        e.dataTransfer.setData('elem', e.target.textContent);
+      });
+    });
+    dragZone.forEach((item) => {
+      item.addEventListener('dragenter', (e) => {
+        e.preventDefault();
+      });
+      item.addEventListener('dragover', (e) => {
+        e.preventDefault();
+      });
+      item.addEventListener('drop', (e) => {
+        e.preventDefault();
+        // console.log();e.dataTransfer.getData('elem')
+        document.querySelectorAll('*').forEach((elem) => {
+          if (elem.textContent === e.dataTransfer.getData('elem')) {
+            this.checkPositionTils(e.dataTransfer.getData('elem'), elem);
+          }
+        });
+        // this.checkPositionTils();
+      });
+    });
+  }
   render() {
     const body = document.querySelector('body');
     this.buttonsWrapperControl.append(this.buttonStart, this.buttonStop, this.buttonSave, this.buttonResult);

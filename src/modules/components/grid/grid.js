@@ -26,6 +26,8 @@ class Grid {
       item.forEach((elem, j) => {
         if (elem !== 0) {
           const div = document.createElement('div');
+          div.style.transition = '0.9s ease';
+          div.setAttribute('draggable', 'true');
           div.classList.add(`${this.className}-tile`, 'tile');
           elem ? (div.innerHTML = elem) : (div.innerHTML = '');
           div.style.left = `${j * (100 / item.length)}%`;
@@ -33,6 +35,11 @@ class Grid {
           this.element.append(div);
         }
       });
+    });
+    arrayForPuzzle.flat().forEach((item) => {
+      const div = document.createElement('div');
+      div.classList.add(`${this.className}-tile`, 'empty-tile');
+      this.element.append(div);
     });
   }
 }

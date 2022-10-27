@@ -28,7 +28,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: 0.9s ease;
+  /* transition: 0.9s ease; */
 }
 .button {
   padding: 10px;
