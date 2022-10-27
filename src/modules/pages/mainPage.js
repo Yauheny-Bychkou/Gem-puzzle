@@ -14,8 +14,14 @@ class MainPage {
     this.buttonsWrapperSize.classList.add('size');
     this.buttonsWrapperControl.classList.add('control');
 
-    this.arrayForPuzzle = Array.from({ length: 16 }, (_, i) => i).sort(() => Math.random() - 0.5);
-    this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, 4);
+    this.arrayForPuzzle = localStorage.getItem('array')
+      ? localStorage
+          .getItem('array')
+          .split(',')
+          .filter((i) => i !== ',')
+          .map((i) => +i)
+      : Array.from({ length: 16 }, (_, i) => i).sort(() => Math.random() - 0.5);
+    this.shuffleArray = this.сhunkArray(this.arrayForPuzzle, Math.sqrt(this.arrayForPuzzle.length));
 
     this.soundControler = new SoundControler();
     this.soundControler.checkBox.checked = true;
@@ -120,7 +126,7 @@ class MainPage {
   }
   addEventListenerToButtonSave() {
     this.buttonSave.addEventListener('click', () => {
-      console.log('save');
+      localStorage.setItem('array', this.shuffleArray.flat());
     });
   }
   addEventListenerToButtonResult() {
@@ -193,7 +199,6 @@ class MainPage {
             if (i === 'right') {
               elFrom.style.left = `${+elFrom.style.left.split('%')[0] + 100 / this.shuffleArray[0].length}%`;
             }
-            // elFrom.style.transition = '0.9s';
           }
         }
       }

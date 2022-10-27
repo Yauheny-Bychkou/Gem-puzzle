@@ -10,6 +10,9 @@ body {
 h1 {
   color: greenyellow;
 }
+button {
+  cursor: pointer;
+}
 .size {
   padding-top: 25px;
 }

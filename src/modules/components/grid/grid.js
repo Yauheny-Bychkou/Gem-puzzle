@@ -3,8 +3,20 @@ class Grid {
   element = document.createElement('div');
   constructor(arrayForPuzzle) {
     this.className = 'grid';
-    this.element.classList.add('grid');
+    this.className =
+      arrayForPuzzle.flat().length === 9
+        ? 'grid-three'
+        : arrayForPuzzle.flat().length === 16
+        ? 'grid'
+        : arrayForPuzzle.flat().length === 25
+        ? 'grid-five'
+        : arrayForPuzzle.flat().length === 36
+        ? 'grid-six'
+        : arrayForPuzzle.flat().length === 49
+        ? 'grid-seven'
+        : 'grid-eight';
     this.renderTiles(arrayForPuzzle);
+    this.element.classList.add(this.className);
   }
   renderTiles(arrayForPuzzle) {
     this.className =
