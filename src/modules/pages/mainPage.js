@@ -137,11 +137,10 @@ class MainPage {
       localStorage.setItem('steps', this.count.countStep);
       localStorage.setItem('time', this.count.countTime);
     });
-    alert('Finish game to add your score to results!');
   }
   addEventListenerToButtonResult() {
     this.buttonResult.addEventListener('click', () => {
-      console.log('result');
+      alert('Finish game to add your score to results!');
     });
   }
   checkPositionTils(textTile, elementFrom) {
