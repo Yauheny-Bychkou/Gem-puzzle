@@ -1,6 +1,8 @@
 import Button from '../components/button/button';
 import Count from '../components/count/count';
 import Grid from '../components/grid/grid';
+import SoundControler from '../components/soundContol/soundControler';
+
 class MainPage {
   buttonsWrapperSize = document.createElement('div');
   buttonsWrapperControl = document.createElement('div');
@@ -12,6 +14,8 @@ class MainPage {
     this.buttonsWrapperSize.classList.add('size');
     this.buttonsWrapperControl.classList.add('control');
     this.arrayForPuzzle = Array.from({ length: 16 }, (_, i) => i);
+    this.soundControler = new SoundControler();
+    this.soundControler.checkBox.checked = true;
     this.count = new Count();
     this.buttonStart = new Button({ text: 'Shuffle and start', className: 'button' }).element;
     this.buttonStop = new Button({ text: 'Stop', className: 'button' }).element;
@@ -26,10 +30,16 @@ class MainPage {
     this.addEventListenerToButtonResult();
     this.addEventListenerToGridWrapper();
     this.addEventListenerToWrapperButtons();
+    // this.addEventListenerToInputCheckbox();
     setInterval(() => {
       this.count.spanTextTimeCount.innerHTML = this.count.countTime++;
     }, 1000);
   }
+  // addEventListenerToInputCheckbox() {
+  //   this.soundControler.checkBox.addEventListener('change', (e) => {
+  //     //
+  //   });
+  // }
   render() {
     const body = document.querySelector('body');
     this.buttonsWrapperControl.append(this.buttonStart, this.buttonStop, this.buttonSave, this.buttonResult);
@@ -41,7 +51,14 @@ class MainPage {
       new Button({ text: '7x7', className: 'button' }).element,
       new Button({ text: '8x8', className: 'button' }).element
     );
-    body.append(this.title, this.buttonsWrapperControl, this.count.element, this.grid.element, this.buttonsWrapperSize);
+    body.append(
+      this.title,
+      this.buttonsWrapperControl,
+      this.count.element,
+      this.grid.element,
+      this.soundControler.element,
+      this.buttonsWrapperSize
+    );
   }
   addEventListenerToWrapperButtons() {
     this.buttonsWrapperSize.addEventListener('click', (e) => {
@@ -123,6 +140,9 @@ class MainPage {
           objPosition[i][1] <= this.shuffleArray.length - 1
         ) {
           if (!this.shuffleArray[objPosition[i][0]][[objPosition[i][1]]]) {
+            if (this.soundControler.checkBox.checked === false) {
+              this.player.muted = true;
+            } else this.player.muted = false;
             const elementFrom = {
               x: posX,
               y: posY,
