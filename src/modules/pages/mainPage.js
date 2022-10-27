@@ -44,7 +44,8 @@ class MainPage {
     const dragZone = document.querySelectorAll('.empty-tile');
     dragItems.forEach((item) => {
       item.addEventListener('dragstart', (e) => {
-        e.target.style.transition = '0s';
+        // e.target.style.transition = '0s';
+        e.target.classList.remove('anim');
         e.dataTransfer.setData('elem', e.target.textContent);
       });
     });
@@ -57,10 +58,13 @@ class MainPage {
       });
       item.addEventListener('drop', (e) => {
         e.preventDefault();
-        // console.log();e.dataTransfer.getData('elem')
         document.querySelectorAll('*').forEach((elem) => {
           if (elem.textContent === e.dataTransfer.getData('elem')) {
             this.checkPositionTils(e.dataTransfer.getData('elem'), elem);
+            setTimeout(() => {
+              elem.classList.add('anim');
+            }, 500);
+            //
           }
         });
         // this.checkPositionTils();
@@ -194,6 +198,7 @@ class MainPage {
             if (i === 'right') {
               elFrom.style.left = `${+elFrom.style.left.split('%')[0] + 100 / this.shuffleArray[0].length}%`;
             }
+            // elFrom.style.transition = '0.9s';
           }
         }
       }
