@@ -9,9 +9,9 @@ class Count {
     this.spansecond.innerHTML = ' c';
     this.countStep = 0;
     this.countTime = 0;
-    this.spanTextSteps.innerHTML = 'Шаги: ';
+    this.spanTextSteps.innerHTML = 'Steps: ';
     this.spanTextStepsCount.innerHTML = this.countStep;
-    this.spanTextTime.innerHTML = 'Время: ';
+    this.spanTextTime.innerHTML = 'Time: ';
     this.spanTextTimeCount.innerHTML = this.countTime;
     this.element.classList.add('count');
     this.spanTextStepsCount.classList.add('count-step');
