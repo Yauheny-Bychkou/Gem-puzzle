@@ -23,10 +23,12 @@ h1 {
   padding-bottom: 25px;
 }
 .tile {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: 0.9s ease;
 }
 .button {
   padding: 10px;

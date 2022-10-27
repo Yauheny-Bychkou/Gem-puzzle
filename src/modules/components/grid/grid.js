@@ -22,11 +22,17 @@ class Grid {
     this.element.innerHTML = '';
     this.element.classList.remove(this.element.classList[0]);
     this.element.classList.add(this.className);
-    arrayForPuzzle.flat().forEach((item) => {
-      const div = document.createElement('div');
-      div.classList.add(`${this.className}-tile`, 'tile');
-      item ? (div.innerHTML = item) : (div.innerHTML = '');
-      this.element.append(div);
+    arrayForPuzzle.forEach((item, i) => {
+      item.forEach((elem, j) => {
+        if (elem !== 0) {
+          const div = document.createElement('div');
+          div.classList.add(`${this.className}-tile`, 'tile');
+          elem ? (div.innerHTML = elem) : (div.innerHTML = '');
+          div.style.left = `${j * (100 / item.length)}%`;
+          div.style.top = `${i * (100 / item.length)}%`;
+          this.element.append(div);
+        }
+      });
     });
   }
 }
