@@ -137,6 +137,7 @@ class MainPage {
       localStorage.setItem('steps', this.count.countStep);
       localStorage.setItem('time', this.count.countTime);
     });
+    alert('Finish game to add your score to results!');
   }
   addEventListenerToButtonResult() {
     this.buttonResult.addEventListener('click', () => {
@@ -227,5 +228,3 @@ class MainPage {
   }
 }
 export default MainPage;
-
-// console.log(this.shuffleArray[objPosition[i][0]][[objPosition[i][1]]]);
